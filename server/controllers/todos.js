@@ -12,14 +12,14 @@ const createTodo = async (req, res) => {
 };
 
 const getAllTodo = async (req, res) => {
-  const newTodo = await pool.query("SELECT description FROM todo");
+  const newTodo = await pool.query("SELECT * FROM todo");
   res.status(StatusCodes.OK).json(newTodo.rows);
 };
 
 const getTodo = async (req, res) => {
   const { id } = req.params;
   const newTodo = await pool.query(
-    "SELECT description FROM todo WHERE todo_id = $1",
+    "SELECT * FROM todo WHERE todo_id = $1",
     [id]
   );
   if (newTodo.rows.length === 0) {
@@ -29,8 +29,7 @@ const getTodo = async (req, res) => {
 };
 
 const updateTodo = async (req, res) => {
-  const { body: description, params: id } = req;
-
+  const { body: {description}, params: {id}} = req;
   const todo = await pool.query(
     "UPDATE todo SET description = $1 WHERE todo_id = $2 RETURNING *",
     [description, id]
