@@ -8,7 +8,7 @@ const createTodo = async (req, res) => {
     "INSERT INTO todo (description) VALUES ($1) RETURNING *",
     [description]
   );
-  res.status(StatusCodes.OK).json(newTodo.rows[0].description);
+  res.status(StatusCodes.OK).json(newTodo.rows[0]);
 };
 
 const getAllTodo = async (req, res) => {
