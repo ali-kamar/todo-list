@@ -1,9 +1,11 @@
 import React from 'react'
 
-const todo = () => {
+const Todo = ({todo}) => {
+  const {id, description} = todo
+  
   return (
     <div>
-      <p></p>
+      <p>{description}</p>
       <div className="btns">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -32,4 +34,4 @@ const todo = () => {
   );
 }
 
-export default todo
+export default Todo
