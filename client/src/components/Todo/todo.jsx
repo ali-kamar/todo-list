@@ -1,10 +1,10 @@
 import React from "react";
 
-const Todo = ({ todo }) => {
+const Todo = ({ todo, handleDelete }) => {
   const { todo_id, description } = todo;
 
   return (
-    <div className="flex justify-between bg-purple-700 m-3 p-2 text-center">
+    <div className="flex justify-between bg-purple-700 m-3 p-2 items-center ">
       <p className="text-sm">{description}</p>
       <div className="btns">
         <button className="edit">
@@ -20,7 +20,7 @@ const Todo = ({ todo }) => {
             />
           </svg>
         </button>
-        <button className="delete">
+        <button className="delete" onClick={() => handleDelete(todo_id)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"
