@@ -1,6 +1,6 @@
 import React from "react";
-
-const Todo = ({ todo, handleDelete }) => {
+import EditTodo from "../EditTodo/EditTodo"
+const Todo = ({ todo, handleDelete, handleEdit }) => {
   const { todo_id, description } = todo;
 
   return (

@@ -20,21 +20,27 @@ const Home = () => {
     fetchTodos();
   }, []);
 
-    const addNewTodo = (newTodo) => {
-      setTodos((prevTodos) => [...prevTodos, newTodo]);
-      console.log(todos);
-      
-    };
-    const handleDelete = async (id) => {
-      try {
-        await axios.delete(`todos/${id}`);
-        setTodos((prevTodos) =>
-          prevTodos.filter((todo) => todo.todo_id !== id)
-        );
-      } catch (error) {
-        console.error("Error deleting todo:", error);
-      }
-    };
+  const addNewTodo = (newTodo) => {
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+    console.log(todos);
+  };
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`todos/${id}`);
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo.todo_id !== id));
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
+  };
+
+  const handleEdit = (updatedTodo) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.todo_id === updatedTodo.todo_id ? updatedTodo : todo
+      )
+    );
+  };
+
   return (
     <div className="container w-full flex justify-center items-center h-screen">
       <div className="card ">
@@ -42,7 +48,12 @@ const Home = () => {
         <AddTodo onAddTodo={addNewTodo} />
         <div className="todos mb-8">
           {todos.map((todo) => (
-            <Todo key={todo.todo_id} todo={todo} handleDelete={handleDelete} />
+            <Todo
+              key={todo.todo_id}
+              todo={todo}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
+            />
           ))}
         </div>
       </div>
