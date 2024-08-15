@@ -11,7 +11,6 @@ const Home = () => {
       try {
         const result = await axios.get("todos");
         setTodos(result.data); // Assuming result.data contains the todos
-        console.log(result.data);
       } catch (error) {
         console.error("Error fetching todos:", error);
       }
@@ -22,7 +21,6 @@ const Home = () => {
 
   const addNewTodo = (newTodo) => {
     setTodos((prevTodos) => [...prevTodos, newTodo]);
-    console.log(todos);
   };
   const handleDelete = async (id) => {
     try {

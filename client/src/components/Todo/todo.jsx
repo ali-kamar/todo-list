@@ -1,13 +1,13 @@
 import React from "react";
-import EditTodo from "../EditTodo/EditTodo"
+import { useNavigate } from "react-router-dom";
 const Todo = ({ todo, handleDelete, handleEdit }) => {
   const { todo_id, description } = todo;
-
+  const navigate = useNavigate()
   return (
     <div className="flex justify-between bg-purple-700 m-3 p-2 items-center ">
       <p className="text-sm">{description}</p>
       <div className="btns">
-        <button className="edit">
+        <button className="edit" onClick={() => navigate(`/edit/${todo_id}`)}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="30"

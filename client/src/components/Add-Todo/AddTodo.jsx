@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import axios from "../../api/axios"
+import React, { useState } from "react";
+import axios from "../../api/axios";
 
 const AddTodo = ({ onAddTodo }) => {
   const [todo, setTodo] = useState("");
@@ -8,8 +8,6 @@ const AddTodo = ({ onAddTodo }) => {
     e.preventDefault();
     try {
       const result = await axios.post("todos", { description: todo });
-      console.log(result);
-      
       onAddTodo(result.data);
       setTodo("");
     } catch (error) {
